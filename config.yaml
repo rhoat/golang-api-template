@@ -1,0 +1,12 @@
+serverConfig:
+  port: "8181"
+  readTimeout: 10
+  readHeaderTimeout: 5
+  writeTimeout: 10
+  idleTimeout: 60
+
+general:
+  logLevel: "debug"
+
+otel:
+  destination: stdout # http, grpc, stdout
