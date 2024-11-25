@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 
-	"github.com/rhoat/go-exercise/pkg/config"
 	"go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc"
 	"go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp"
 	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc"
@@ -19,15 +18,15 @@ import (
 	"go.opentelemetry.io/otel/sdk/trace"
 )
 
-func setupExporters(ctx context.Context, destination config.OtelDestination) (
+func setupExporters(ctx context.Context, destination Destination) (
 	trace.SpanExporter, metric.Exporter, log.Exporter, error,
 ) {
 	switch destination {
-	case config.GRPC:
+	case GRPC:
 		return grpcExporters(ctx)
-	case config.HTTP:
+	case HTTP:
 		return httpExporters(ctx)
-	case config.STDOUT:
+	case STDOUT:
 		return stdExporters()
 	default:
 		return nil, nil, nil, errors.New("how did you manage to get outside the exhaustive list?")

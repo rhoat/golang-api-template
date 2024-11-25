@@ -3,7 +3,6 @@ package gotel
 import (
 	"context"
 
-	"github.com/rhoat/go-exercise/pkg/config"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/log/global"
 	"go.opentelemetry.io/otel/propagation"
@@ -11,9 +10,9 @@ import (
 
 // setupOTelSDK bootstraps the OpenTelemetry pipeline.
 // If it does not return an error, make sure to call shutdown for proper cleanup.
-func SetupOTelSDK(ctx context.Context, otelConfig config.OtelConfig, options ...CfgOptionFunc) error {
+func SetupOTelSDK(ctx context.Context, destination Destination, options ...CfgOptionFunc) error {
 	var shutdownFuncs []func(context.Context) error
-	traceExporter, metricExporter, logExporter, err := setupExporters(ctx, otelConfig.Destination)
+	traceExporter, metricExporter, logExporter, err := setupExporters(ctx, destination)
 	if err != nil {
 		return err
 	}

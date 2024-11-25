@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/mitchellh/mapstructure"
+	gotel "github.com/rhoat/go-exercise/pkg/otel"
 	"github.com/rhoat/go-exercise/pkg/system"
 	"github.com/spf13/viper"
 	"go.uber.org/zap/zapcore"
@@ -41,7 +42,7 @@ type GeneralConfig struct {
 }
 
 type OtelConfig struct {
-	Destination OtelDestination `mapstructure:"destination" yaml:"destination"`
+	Destination gotel.Destination `mapstructure:"destination" yaml:"destination"`
 }
 
 type Config struct {

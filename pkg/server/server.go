@@ -36,7 +36,7 @@ func New(lc fx.Lifecycle, log *zap.Logger, cfg *config.Config, routeGroups []rou
 	lc.Append(fx.Hook{
 		OnStart: func(_ context.Context) error {
 			log.Info("Setting up Otel SDK", zap.String("destination", cfg.Otel.Destination.String()))
-			err := gotel.SetupOTelSDK(context.Background(), cfg.Otel)
+			err := gotel.SetupOTelSDK(context.Background(), cfg.Otel.Destination)
 			if err != nil {
 				log.Error("Failed to setup otel", zap.Error(err))
 				return err
